@@ -5,16 +5,9 @@ import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
 import useKeypress from "react-use-keypress";
+import { Turtle } from "../Turtle";
 
-const socket = new WebSocket("ws://localhost:8080");
-
-// socket.onopen = () => {
-//   socket.send("Test Server");
-// };
-
-socket.onmessage = (e) => {
-  console.log(e.data);
-};
+let turtle = new Turtle("jhgf");
 
 type KeyPressEvent = {
   key: string;
@@ -39,7 +32,7 @@ const Combat = () => {
 
       case "ArrowUp":
         console.log("Up");
-        socket.send("Do yo thang");
+        turtle.forward();
     }
   });
 
