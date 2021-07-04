@@ -4,7 +4,7 @@ import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
 
-const Combat: React.FC = () => {
+const Combat = () => {
   var TurtleTabArray = [];
   for (var i = 0; i < 3; i++) {
     TurtleTabArray.push(<TurtleTab label="main" timestamp="today" />);

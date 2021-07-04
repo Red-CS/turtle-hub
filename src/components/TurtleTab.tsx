@@ -7,11 +7,7 @@ interface Props {
   fuelLevel?: number;
 }
 
-const TurtleTab: React.FC<Props> = ({
-  label,
-  timestamp,
-  fuelLevel = 800,
-}: Props) => {
+const TurtleTab = ({ label, timestamp, fuelLevel = 800 }: Props) => {
   return (
     <div className={styles["entry"]}>
       <h3 className={styles["label"]}>{label}</h3>
