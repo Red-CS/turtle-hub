@@ -1,17 +1,25 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import styles from "./styles/Combat.module.css";
+import TurtleTab from "../components/TurtleTab";
+import turtleHeader from "../img/turtleHeader.png";
 
 const Combat: React.FC = () => {
+  var TurtleTabArray = [];
+  for (var i = 0; i < 3; i++) {
+    TurtleTabArray.push(<TurtleTab label="main" timestamp="today" />);
+  }
+
   const [controlPanelState, setControlPanelState] = useState<boolean>(false);
 
   return (
-    <div className="App">
+    <div className={styles["page"]}>
       <div
-        className="dim-screen"
+        className={styles["dim-screen"]}
         style={{ visibility: controlPanelState ? "visible" : "hidden" }}
       />
       <div
-        className="control-panel"
+        className={styles["control-panel"]}
         style={{ visibility: controlPanelState ? "visible" : "hidden" }}
         // ref={controlPanelRef}
       >
@@ -20,34 +28,23 @@ const Combat: React.FC = () => {
       <Navbar />
       <main>
         <header>
-          {/* <img src={image} alt="" /> */}
+          <img src={turtleHeader} alt="" />
           <h1>Combat</h1>
         </header>
-        <div className="turtles">
+        <div className={styles["turtles"]}>
           <h2>Turtles</h2>
-          <ul className="turtle-list">
-            <li onClick={() => setControlPanelState(!controlPanelState)}>
-              {/* <TurtleObject
-                label="main"
-                timestamp="timestamp"
-                fuelLevel={800}
-              /> */}
-            </li>
-            <li onClick={() => setControlPanelState(!controlPanelState)}>
-              {/* <TurtleObject
-                label="main"
-                timestamp="timestamp"
-                fuelLevel={800}
-                style={{ zIndex: "-1" }}
-              /> */}
-            </li>
-            <li onClick={() => setControlPanelState(!controlPanelState)}>
-              {/* <TurtleObject
-                label="main"
-                timestamp="timestamp"
-                fuelLevel={800}
-              /> */}
-            </li>
+          <ul className={styles["turtle-list"]}>
+            {TurtleTabArray.map((turtle, index) => {
+              console.log(turtle);
+              return (
+                <li
+                  key={index}
+                  onClick={() => setControlPanelState(!controlPanelState)}
+                >
+                  {turtle}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </main>
