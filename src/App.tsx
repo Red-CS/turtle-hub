@@ -1,25 +1,17 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Route, Switch } from "react-router-dom";
+
+import Combat from "./pages/Combat";
+import Mining from "./pages/Mining";
+import Farming from "./pages/Farming";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Editsfsdfds <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path="/mining" component={Mining} />
+      <Route path="/farming" component={Farming} />
+      <Route path="/" component={Combat} />
+    </Switch>
   );
 }
 
