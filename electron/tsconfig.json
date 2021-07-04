@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "outDir": "../build", // Output transpiled files to build/electron/

@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
 import * as isDev from "electron-is-dev";
+import Websocket = require("ws");
 // import installExtension, {
 //   REACT_DEVELOPER_TOOLS,
 // } from "electron-devtools-installer";
@@ -52,7 +53,32 @@ function createWindow() {
   // }
 }
 
-app.on("ready", createWindow);
+function createWebsocketServer() {
+  console.log("Creating server");
+  const wss: Websocket.Server = new Websocket.Server({ port: 8080 });
+
+  wss.on("connection", function connection(ws) {
+    ws.on("message", function incoming(message) {
+      console.log("received: %s", message);
+      wss.clients.forEach((client) => {
+        client.send(JSON.stringify({ function: "return turtle.forward()" }));
+      });
+      // wss.broadcast(JSON.stringify({ function: "return turtle.forward()" }));
+      // wss.broadcast("All should see me");
+    });
+  });
+
+  // wss.broadcast = (msg) => {
+  //   wss.clients.forEach((client) => {
+  //     client.send(msg);
+  //   });
+  // };
+}
+
+app.on("ready", () => {
+  createWindow();
+  createWebsocketServer();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
