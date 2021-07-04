@@ -5,6 +5,16 @@ import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
 
+const socket = new WebSocket("ws://localhost:8080");
+
+socket.onopen = () => {
+  socket.send("Test Server");
+};
+
+socket.onmessage = (e) => {
+  console.log(e.data);
+};
+
 const Combat = () => {
   var TurtleTabArray = [];
   for (var i = 0; i < 3; i++) {
@@ -39,7 +49,6 @@ const Combat = () => {
           <h2>Turtles</h2>
           <ul className={styles["turtle-list"]}>
             {TurtleTabArray.map((turtle, index) => {
-              console.log(turtle);
               return (
                 <li
                   key={index}
