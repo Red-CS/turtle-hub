@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import Navbar from "../components/Navbar";
 import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
@@ -11,6 +12,9 @@ const Combat = () => {
   }
 
   const [controlPanelState, setControlPanelState] = useState<boolean>(false);
+  const controlPanelRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(controlPanelRef, () => setControlPanelState(false));
 
   return (
     <div className={styles["page"]}>
@@ -21,7 +25,7 @@ const Combat = () => {
       <div
         className={styles["control-panel"]}
         style={{ visibility: controlPanelState ? "visible" : "hidden" }}
-        // ref={controlPanelRef}
+        ref={controlPanelRef}
       >
         {/* TODO Add stuff for the control panel */}
       </div>
