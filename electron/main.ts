@@ -61,6 +61,7 @@ function createWebsocketServer() {
     ws.on("message", function incoming(message) {
       console.log("received: %s", message);
       wss.clients.forEach((client) => {
+        // console.log(wss.clients.size);
         client.send(JSON.stringify({ function: "return turtle.forward()" }));
       });
       // wss.broadcast(JSON.stringify({ function: "return turtle.forward()" }));

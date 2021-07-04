@@ -4,15 +4,20 @@ import Navbar from "../components/Navbar";
 import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
+import useKeypress from "react-use-keypress";
 
 const socket = new WebSocket("ws://localhost:8080");
 
-socket.onopen = () => {
-  socket.send("Test Server");
-};
+// socket.onopen = () => {
+//   socket.send("Test Server");
+// };
 
 socket.onmessage = (e) => {
   console.log(e.data);
+};
+
+type KeyPressEvent = {
+  key: string;
 };
 
 const Combat = () => {
@@ -25,6 +30,18 @@ const Combat = () => {
   const controlPanelRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(controlPanelRef, () => setControlPanelState(false));
+
+  useKeypress(["Escape", "ArrowUp"], (event: KeyPressEvent) => {
+    switch (event.key) {
+      case "Escape":
+        setControlPanelState(false);
+        break;
+
+      case "ArrowUp":
+        console.log("Up");
+        socket.send("Do yo thang");
+    }
+  });
 
   return (
     <div className={styles["page"]}>
