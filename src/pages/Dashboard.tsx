@@ -6,6 +6,7 @@ import TurtleTab from "../components/TurtleTab";
 import useKeypress from "react-use-keypress";
 import LogoIcon from "../components/LogoIcon";
 import LogoText from "../components/LogoText";
+import ServerStatusIcon from "../components/ServerStatusIcon";
 
 type KeyPressEvent = {
   key: string;
@@ -56,6 +57,7 @@ const Dashboard = () => {
             })}
           </ul>
         </div>
+        <ServerStatusIcon />
       </main>
     </div>
   );

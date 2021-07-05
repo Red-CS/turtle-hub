@@ -5,10 +5,10 @@
 
   background-color: var(--turtle-inactive);
   font-family: Varela;
-  border-radius: 35px;
-  padding: 10px 0px;
-  margin: 10px 0px;
-  transition: 0.2s all ease-in-out;
+  border-radius: 20px;
+  padding: 6px 0px;
+  margin: 15px 0px;
+  transition: var(--transition);
 }
 
 .container {
