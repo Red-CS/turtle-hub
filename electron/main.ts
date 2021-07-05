@@ -69,7 +69,7 @@ function createWebsocketServer() {
 
 app.on("ready", () => {
   createWindow();
-  createWebsocketServer();
+  // createWebsocketServer();
 });
 
 app.on("window-all-closed", () => {

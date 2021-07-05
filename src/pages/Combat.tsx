@@ -5,9 +5,6 @@ import styles from "./styles/Combat.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
 import useKeypress from "react-use-keypress";
-import { Turtle } from "../Turtle";
-
-let turtle = new Turtle("jhgf");
 
 type KeyPressEvent = {
   key: string;
@@ -32,7 +29,6 @@ const Combat = () => {
 
       case "ArrowUp":
         console.log("Up");
-        turtle.forward();
     }
   });
 
