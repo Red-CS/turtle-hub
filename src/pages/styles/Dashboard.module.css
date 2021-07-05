@@ -7,19 +7,14 @@
   position: relative;
 }
 
-li {
-  list-style: none;
-  cursor: pointer;
-}
-
 main {
   display: table-cell;
   width: 95%;
   background-image: url("../../img/bgSword.png");
-  background-size: 60%;
+  background-size: clamp(30%, 40%, 50%) auto;
   background-repeat: no-repeat;
-  background-position-x: right;
-  background-position-y: bottom;
+  background-position-x: calc(var(--navbar-width) + 50%);
+  background-position-y: 50%;
 }
 
 header {
@@ -53,7 +48,7 @@ img {
 }
 
 .turtle-list {
-  max-height: 55vh;
+  max-height: 50vh;
   width: 30%;
   overflow: hidden;
   overflow-y: scroll;
