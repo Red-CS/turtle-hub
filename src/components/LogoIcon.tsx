@@ -7,8 +7,8 @@ const LogoIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        padding: "10px",
         margin: "5px",
+        padding: "10px",
       }}
     >
       <path

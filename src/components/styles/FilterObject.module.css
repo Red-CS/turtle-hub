@@ -1,0 +1,13 @@
+.container {
+  --bg-filter: rgba(205, 255, 246, 0.5);
+
+  background-color: var(--bg-filter);
+
+  width: fit-content;
+  color: #292929;
+  font-weight: 500;
+  padding: 5px 20px;
+  margin: 2px;
+  border-radius: 50px;
+  font-size: 14px;
+}
