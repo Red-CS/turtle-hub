@@ -3,8 +3,9 @@ import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import Navbar from "../components/Navbar";
 import styles from "./styles/Dashboard.module.css";
 import TurtleTab from "../components/TurtleTab";
-import turtleHeader from "../img/turtleHeader.png";
 import useKeypress from "react-use-keypress";
+import LogoIcon from "../components/LogoIcon";
+import LogoText from "../components/LogoText";
 
 type KeyPressEvent = {
   key: string;
@@ -37,8 +38,8 @@ const Dashboard = () => {
       <Navbar />
       <main>
         <header>
-          <img src={turtleHeader} alt="" />
-          <h1>Combat</h1>
+          <LogoIcon />
+          <LogoText />
         </header>
         <div className={styles["turtles"]}>
           <h2>Turtles</h2>
