@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
+import { START_SERVER } from "../util/constants";
 import * as path from "path";
 import * as isDev from "electron-is-dev";
 import Websocket = require("ws");
@@ -7,6 +8,7 @@ import Websocket = require("ws");
 // } from "electron-devtools-installer";
 
 let win: BrowserWindow | null = null;
+let wss: Websocket.Server | null = null;
 
 function createWindow() {
   win = new BrowserWindow({
@@ -14,6 +16,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
@@ -55,17 +58,36 @@ function createWindow() {
 
 function createWebsocketServer() {
   console.log("Creating server");
-  const wss: Websocket.Server = new Websocket.Server({ port: 8080 });
+  wss = new Websocket.Server({ port: 8080 });
 
   wss.on("connection", function connection(ws) {
     ws.on("message", function incoming(message) {
       console.log("received: %s", message);
-      wss.clients.forEach((client) => {
-        client.send(JSON.stringify({ function: "return turtle.forward()" }));
-      });
+      if (wss) {
+        wss.clients.forEach((client) => {
+          client.send(JSON.stringify({ function: "return turtle.forward()" }));
+        });
+      }
     });
   });
 }
+
+function deleteWebsocketServer() {
+  console.log("Deleting Server");
+  if (wss) wss.close();
+  wss = null;
+}
+
+ipcMain.on(START_SERVER, (event, arg) => {
+  console.log("Toggling Server");
+  if (wss) {
+    deleteWebsocketServer();
+    event.reply("server-status", false);
+  } else {
+    createWebsocketServer();
+    event.reply("server-status", true);
+  }
+});
 
 app.on("ready", () => {
   createWindow();
