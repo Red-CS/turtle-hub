@@ -7,30 +7,6 @@
   position: relative;
 }
 
-.dim-screen {
-  z-index: 5;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg-black);
-  opacity: 0.8;
-}
-
-.control-panel {
-  z-index: 6;
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--bg-white);
-  border-radius: 5px;
-  background-image: url("../../img/bgSword.png");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 li {
   list-style: none;
   cursor: pointer;
@@ -77,5 +53,5 @@ img {
 }
 
 .turtle-list {
-  width: 50%;
+  width: 30%;
 }

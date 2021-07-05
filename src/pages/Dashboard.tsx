@@ -13,7 +13,7 @@ type KeyPressEvent = {
 const Dashboard = () => {
   var TurtleTabArray = [];
   for (var i = 0; i < 3; i++) {
-    TurtleTabArray.push(<TurtleTab label="main" timestamp="today" />);
+    TurtleTabArray.push(<TurtleTab label="main" status={false} />);
   }
 
   const [controlPanelState, setControlPanelState] = useState<boolean>(false);
@@ -34,17 +34,6 @@ const Dashboard = () => {
 
   return (
     <div className={styles["page"]}>
-      <div
-        className={styles["dim-screen"]}
-        style={{ visibility: controlPanelState ? "visible" : "hidden" }}
-      />
-      <div
-        className={styles["control-panel"]}
-        style={{ visibility: controlPanelState ? "visible" : "hidden" }}
-        ref={controlPanelRef}
-      >
-        {/* TODO Add stuff for the control panel */}
-      </div>
       <Navbar />
       <main>
         <header>
