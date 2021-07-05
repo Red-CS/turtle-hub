@@ -14,10 +14,11 @@ const ServerStatusIcon = () => {
         transition: "var(--transition)",
       }}
       onClick={() => {
-        // @ts-ignore
-        window.electron.toggleServer();
-        // @ts-ignore
-        console.log(window.electron.getStatus());
+        console.log("Clicked Server");
+        // // @ts-ignore
+        // window.electron.toggleServer();
+        // // @ts-ignore
+        // console.log(window.electron.getStatus());
       }}
     >
       <circle cx="28" cy="28" r="28" fill="#1E1E1E" />
