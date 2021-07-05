@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useOnClickOutside } from "../hooks/useOnClickOutside";
 import Navbar from "../components/Navbar";
-import styles from "./styles/Combat.module.css";
+import styles from "./styles/Dashboard.module.css";
 import TurtleTab from "../components/TurtleTab";
 import turtleHeader from "../img/turtleHeader.png";
 import useKeypress from "react-use-keypress";
@@ -10,7 +10,7 @@ type KeyPressEvent = {
   key: string;
 };
 
-const Combat = () => {
+const Dashboard = () => {
   var TurtleTabArray = [];
   for (var i = 0; i < 3; i++) {
     TurtleTabArray.push(<TurtleTab label="main" timestamp="today" />);
@@ -71,4 +71,4 @@ const Combat = () => {
   );
 };
 
-export default Combat;
+export default Dashboard;
