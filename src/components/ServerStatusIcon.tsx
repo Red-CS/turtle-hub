@@ -1,4 +1,5 @@
 import styles from "./styles/ServerStatusIcon.module.css";
+import { SERVER_STATUS, TOGGLE_SERVER } from "../util/constants";
 import { useState, useEffect } from "react";
 
 // IpcRenderer communicates with backend
@@ -12,7 +13,7 @@ const ServerStatusIcon = () => {
   // Handles setting the server state to trigger visual change
   useEffect(() => {
     //@ts-ignore
-    ipcRenderer.once("server-status", (_event, arg: boolean) => {
+    ipcRenderer.once(SERVER_STATUS, (_event, arg: boolean) => {
       console.log(arg);
       setServerState(arg);
     });
@@ -28,7 +29,7 @@ const ServerStatusIcon = () => {
       className={styles["server-icon"]}
       onClick={() => {
         // Toggle the server
-        ipcRenderer.send("start-server");
+        ipcRenderer.send(TOGGLE_SERVER);
       }}
     >
       <circle cx="28" cy="28" r="28" fill="#1E1E1E" />

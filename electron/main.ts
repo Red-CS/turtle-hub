@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from "electron";
-import { START_SERVER } from "../util/constants";
+import { TOGGLE_SERVER, SERVER_STATUS } from "../src/util/constants";
 import * as path from "path";
 import * as isDev from "electron-is-dev";
 import Websocket = require("ws");
@@ -49,8 +49,8 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      contextIsolation: false,
-    },
+      contextIsolation: false
+    }
   });
 
   if (isDev) {
@@ -75,7 +75,7 @@ function createWindow() {
         "electron"
       ),
       forceHardReset: true,
-      hardResetMethod: "exit",
+      hardResetMethod: "exit"
     });
   }
 }
@@ -111,13 +111,12 @@ function deleteWebsocketServer() {
 /* ------------------------ Ipc Main/Renderer Process ----------------------- */
 
 // Handles the Toggle Server event called from renderer
-ipcMain.on(START_SERVER, (event, arg) => {
-  console.log("Toggling Server");
+ipcMain.on(TOGGLE_SERVER, (event, arg) => {
   if (wss) {
     deleteWebsocketServer();
-    event.reply("server-status", false);
+    event.reply(SERVER_STATUS, false);
   } else {
     createWebsocketServer();
-    event.reply("server-status", true);
+    event.reply(SERVER_STATUS, true);
   }
 });
