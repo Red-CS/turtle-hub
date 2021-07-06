@@ -1,3 +1,12 @@
+.server-icon {
+  --server-border-spacing: 20px;
+  position: absolute;
+  right: var(--server-border-spacing);
+  bottom: var(--server-border-spacing);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
 .path {
   --animation: pulse 3.5s infinite;
 }

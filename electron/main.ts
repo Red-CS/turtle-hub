@@ -10,6 +10,38 @@ import Websocket = require("ws");
 let win: BrowserWindow | null = null;
 let wss: Websocket.Server | null = null;
 
+// // DevTools
+// installExtension(REACT_DEVELOPER_TOOLS)
+//   .then((name) => console.log(`Added Extension:  ${name}`))
+//   .catch((err) => console.log("An error occurred: ", err));
+
+// if (isDev) {
+//   win.webContents.openDevTools();
+// }
+
+/* --------------------------- App Main Processes --------------------------- */
+
+app.on("ready", () => {
+  createWindow();
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", () => {
+  if (win === null) {
+    createWindow();
+  }
+});
+
+/* ---------------------------- Helper Functions ---------------------------- */
+
+/**
+ * Creates the main Window, and allows hot reloading for development
+ */
 function createWindow() {
   win = new BrowserWindow({
     width: 800,
@@ -46,17 +78,11 @@ function createWindow() {
       hardResetMethod: "exit",
     });
   }
-
-  // // DevTools
-  // installExtension(REACT_DEVELOPER_TOOLS)
-  //   .then((name) => console.log(`Added Extension:  ${name}`))
-  //   .catch((err) => console.log("An error occurred: ", err));
-
-  // if (isDev) {
-  //   win.webContents.openDevTools();
-  // }
 }
 
+/**
+ * Creates the Websocket Server
+ */
 function createWebsocketServer() {
   console.log("Creating server");
   wss = new Websocket.Server({ port: 8080 });
@@ -73,12 +99,18 @@ function createWebsocketServer() {
   });
 }
 
+/**
+ * Deletes the Websocket Server
+ */
 function deleteWebsocketServer() {
   console.log("Deleting Server");
   if (wss) wss.close();
   wss = null;
 }
 
+/* ------------------------ Ipc Main/Renderer Process ----------------------- */
+
+// Handles the Toggle Server event called from renderer
 ipcMain.on(START_SERVER, (event, arg) => {
   console.log("Toggling Server");
   if (wss) {
@@ -87,22 +119,5 @@ ipcMain.on(START_SERVER, (event, arg) => {
   } else {
     createWebsocketServer();
     event.reply("server-status", true);
-  }
-});
-
-app.on("ready", () => {
-  createWindow();
-  // createWebsocketServer();
-});
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
-
-app.on("activate", () => {
-  if (win === null) {
-    createWindow();
   }
 });
