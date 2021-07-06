@@ -1,0 +1,18 @@
+.path {
+  --animation: pulse 3.5s infinite;
+}
+
+@keyframes pulse {
+  from {
+    fill: #ffffff;
+  }
+
+  50% {
+    fill: rgb(151, 255, 236);
+    /* fill: var(--bg-black); */
+  }
+
+  to {
+    fill: #ffffff;
+  }
+}
