@@ -12,6 +12,7 @@ const ServerStatusIcon = () => {
         right: borderSpacing,
         bottom: borderSpacing,
         transition: "var(--transition)",
+        cursor: "pointer",
       }}
       onClick={() => {
         console.log("Clicked Server");

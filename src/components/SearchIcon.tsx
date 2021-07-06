@@ -7,9 +7,7 @@ const SearchIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        // marginLeft: "20px",
-        // width: "18px",
-        padding: "2px",
+        marginBottom: "4px",
       }}
     >
       <circle

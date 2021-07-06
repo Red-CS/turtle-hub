@@ -52,6 +52,7 @@ const Dashboard = () => {
                 className={styles["search-input"]}
                 type="text"
                 placeholder="Search"
+                spellCheck={false}
               />
             </div>
             <ul className={styles["filter"]}>
