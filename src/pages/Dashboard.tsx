@@ -9,10 +9,13 @@ import LogoText from "../components/LogoText";
 import ServerStatusIcon from "../components/ServerStatusIcon";
 import SearchIcon from "../components/SearchIcon";
 import FilterObject from "../components/FilterObject";
+import { Turtle } from "../Turtle";
 
 type KeyPressEvent = {
   key: string;
 };
+
+let turtleOne: any = null;
 
 const Dashboard = () => {
   var TurtleTabArray = [];
@@ -33,6 +36,10 @@ const Dashboard = () => {
 
       case "ArrowUp":
         console.log("Up");
+        if (turtleOne === null) {
+          turtleOne = new Turtle("name");
+        }
+        turtleOne.forward();
     }
   });
 

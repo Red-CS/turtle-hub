@@ -97,6 +97,8 @@ function createWebsocketServer() {
       }
     });
   });
+
+  console.log("Server created");
 }
 
 /**
@@ -106,6 +108,7 @@ function deleteWebsocketServer() {
   console.log("Deleting Server");
   if (wss) wss.close();
   wss = null;
+  console.log("Server removed");
 }
 
 /* ------------------------ Ipc Main/Renderer Process ----------------------- */

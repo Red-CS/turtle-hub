@@ -3,21 +3,34 @@ export class Turtle {
   label: string = "";
   fuel: number = 0;
   ws: WebSocket;
+  isConnected: boolean = false;
 
   constructor(label: string) {
     this.label = label;
     this.ws = new WebSocket("ws://localhost:8080");
+    this.connect().then(() => {
+      console.log("Connected! isConnected is", this.isConnected);
+    });
+  }
 
+  async connect() {
     this.ws.onopen = () => {
-      this.ws.send("Test Server");
+      this.isConnected = true;
+      // this.ws.send("Test Server");
+      this.ws.send("Move Forward()");
     };
 
     this.ws.onmessage = (e) => {
       console.log(e.data);
     };
+    return true;
   }
 
   forward() {
-    this.ws.send("Move Forward()");
+    if (!this.isConnected) {
+      console.log("Can't send, not connnected yet");
+      return;
+    }
+    this.ws.send("Move forward()");
   }
 }
