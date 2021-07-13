@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   useOnClickOutside(controlPanelRef, () => setControlPanelState(false));
 
-  useKeypress(["Escape", "ArrowUp"], (event: KeyPressEvent) => {
+  useKeypress(["Escape", "ArrowUp"], async (event: KeyPressEvent) => {
     switch (event.key) {
       case "Escape":
         setControlPanelState(false);
@@ -39,7 +39,7 @@ const Dashboard = () => {
         if (turtleOne === null) {
           turtleOne = new Turtle("name");
         }
-        turtleOne.forward();
+        await turtleOne.execute("forwarhd");
     }
   });
 

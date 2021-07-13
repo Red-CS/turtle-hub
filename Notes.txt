@@ -1,0 +1,18 @@
+From browser to backend, backend parses and sends to specific
+
+Creating a Turtle:
+Manually
+	Inject the code from a floppy disk,
+	edit startup
+	reboot
+	Should be online if the server is up
+	Will send it's name/label in JSON format
+	Electron main process will see that, tell renderer to add a new entry and save to storage
+	
+Via the app (mitosis)
+	Mitosis process happens
+	We turn the turtle on
+	should be online
+	Will send it's name/label in JSON format
+	Electron main process will see that, tell renderer to add a new entry and save to storage
+	
